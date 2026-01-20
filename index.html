@@ -1,0 +1,50 @@
+<script>
+  // 📅 NYITÁS IDEJE
+  const openDate = new Date("2026-01-20T18:25:00");
+  
+  // 🔑 CSAK TE LÁTOD az oldalt
+  const adminPassword = "FS25ME"; // <-- ezt csak te tudod
+
+  let userInput = prompt("Az oldal lezárt. Add meg a jelszót:");
+
+  if(userInput === adminPassword){
+    console.log("Üdvözöllek, Admin! Az oldal teljesen látható.");
+  } else {
+    if(new Date() < openDate){
+      document.addEventListener("DOMContentLoaded", () => {
+        document.body.innerHTML = `
+          <style>
+            body {
+              margin:0; height:100vh; display:flex; align-items:center; justify-content:center;
+              background: linear-gradient(135deg, #0f1f17, #1e3d2b);
+              font-family:Arial, sans-serif; text-align:center; color:white;
+            }
+            .box {
+              background: rgba(0,0,0,0.45); padding:50px; border-radius:16px;
+              box-shadow:0 0 40px rgba(0,0,0,0.6);
+            }
+            h1 {color:#7CFF9B;}
+            #countdown {margin-top:20px; font-size:1.6em; color:#FFD966;}
+          </style>
+          <div class="box">
+            <h1>🔒 Az oldal le van zárva</h1>
+            <p>Már csak egy kis simítás, és lehet belépni</p>
+            <p><strong>FS25 Pro Farmers</strong></p>
+            <div id="countdown"></div>
+          </div>
+        `;
+
+        const countdown = document.getElementById("countdown");
+        setInterval(()=>{
+          const diff = openDate - new Date();
+          if(diff <= 0){ location.reload(); return; }
+          const d=Math.floor(diff/(1000*60*60*24));
+          const h=Math.floor((diff/(1000*60*60))%24);
+          const m=Math.floor((diff/(1000*60))%60);
+          const s=Math.floor((diff/1000)%60);
+          countdown.textContent=`${d} nap ${h} óra ${m} perc ${s} mp`;
+        },1000);
+      });
+    }
+  }
+</script>
