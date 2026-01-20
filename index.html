@@ -1,0 +1,76 @@
+<script>
+  const openDate = new Date("2026-01-21T13:30:00");
+
+  function showLockScreen() {
+    document.write(`
+      <!DOCTYPE html>
+      <html lang="hu">
+      <head>
+        <meta charset="UTF-8">
+        <title>Oldal lezárva</title>
+        <style>
+          body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f1f17, #1e3d2b);
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+          }
+          .box {
+            background: rgba(0,0,0,0.45);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+          }
+          h1 {
+            color: #7CFF9B;
+            margin-bottom: 10px;
+          }
+          #countdown {
+            font-size: 1.6em;
+            margin-top: 20px;
+            color: #FFD966;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="box">
+          <h1>🔒 Az oldal le van zárva</h1>
+          <p>Már csak egy kis simítás, és lehet belépni</p>
+          <p><strong>FS25 Pro Farmers</strong></p>
+          <div id="countdown">Visszaszámlálás…</div>
+        </div>
+
+        <script>
+          const openDate = new Date("2026-01-21T13:30:00");
+          setInterval(() => {
+            const now = new Date();
+            const diff = openDate - now;
+
+            if (diff <= 0) {
+              location.reload();
+              return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("countdown").textContent =
+              d + " nap " + h + " óra " + m + " perc " + s + " mp";
+          }, 1000);
+        <\/script>
+      </body>
+      </html>
+    `);
+  }
+
+  if (new Date() < openDate) {
+    showLockScreen();
+  }
+</script>
