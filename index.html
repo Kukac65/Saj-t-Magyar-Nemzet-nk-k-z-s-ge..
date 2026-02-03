@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <title>Atlas Studio – AI Director</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #0f1115;
+      color: #fff;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 240px;
+      background: #151821;
+      padding: 20px;
+      border-right: 1px solid #222;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    .menu div {
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      color: #cfcfcf;
+    }
+
+    .menu div.active,
+    .menu div:hover {
+      background: #1f2330;
+      color: #fff;
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .header {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #151821;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    textarea, input {
+      width: 100%;
+      background: #0f1115;
+      border: 1px solid #2a2f3a;
+      border-radius: 8px;
+      padding: 12px;
+      color: white;
+      resize: none;
+      margin-top: 10px;
+    }
+
+    button {
+      background: #5865f2;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      background: #4752c4;
+    }
+
+    .output {
+      background: #0f1115;
+      border: 1px solid #2a2f3a;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 15px;
+      white-space: pre-wrap;
+      color: #cfcfcf;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo">🚀 Atlas Studio</div>
+    <div class="menu">
+      <div class="active">🎬 Director</div>
+      <div>🧠 AI Tools</div>
+      <div>🖼 Thumbnails</div>
+      <div>⚙️ Settings</div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="header">AI Director</div>
+
+    <div class="card">
+      <h3>📄 Videó szöveg / leírás</h3>
+      <textarea id="inputText" rows="6" placeholder="Ide írd a videód szövegét..."></textarea>
+      <button onclick="generate()">⚡ Generálás</button>
+    </div>
+
+    <div class="card">
+      <h3>✨ AI javaslat</h3>
+      <div id="output" class="output">Még nincs generálva semmi.</div>
+    </div>
+  </div>
+
+  <script>
+    function generate() {
+      const text = document.getElementById("inputText").value;
+      const output = document.getElementById("output");
+
+      if (!text.trim()) {
+        output.textContent = "❌ Írj be valami szöveget bro.";
+        return;
+      }
+
+      output.textContent =
+        "🔥 Javasolt cím:\n" +
+        "👉 " + text.slice(0, 40) + " | Brutál AI Tipp\n\n" +
+        "📝 Leírás:\n" +
+        "Ez a videó arról szól, hogy " + text.slice(0, 80) + "...\n\n" +
+        "🏷 Tag-ek:\n" +
+        "#ai #youtube #atlas #magyar";
+    }
+  </script>
+
+</body>
+</html>
